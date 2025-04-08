@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+.navbar {
+    background: #212529;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.find-test{
+    border: 1px solid transparent;
+    border-radius: 4px ;
+    padding: 10px;
+}
+
+.link {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.link a {
+    color: white;
+    text-decoration: none;
+}
+
+.banner {
+    background: #5a2eca;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.btn-play {
+    background: gold;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.container {
+    gap: 20px;
+    width: 100%; 
+    border: 1px solid transparent;
+    margin: 20px auto;
+    padding: 50px;
+}
+
+h2{
+    text-align: center;
+}
+
+.header-main {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.header-main button{
+    border: 1px solid black;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.header-main .choose{
+    background: #FFF3CD;
+}
+
+.quiz-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quiz-box {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    width: calc(50% - 10px); 
+    box-sizing: border-box; 
+}
+
+.quiz-box .btn-play {
+    color: black;
+    margin-left: 85%; 
+}
+
+.content {
+    flex-grow: 1; 
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
+
+.change-page {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.change-page button {
+    background-color: white;
+    color: #2b80fd;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.change-page .active {
+    background-color: #2b80fd;
+    color: black;
+}
+
+footer {
+    background: #212529;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}

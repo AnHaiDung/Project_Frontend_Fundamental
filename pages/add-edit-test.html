@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/images/Gemini_Generated_Image_nmxnq9nmxnq9nmxn.jpg" type="image/x-icon">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/add-edit-test.css">
+</head>
+<body>
+    <div class="body">
+        <header class="navbar">
+            <h1 class="h1">QuizzForge</h1>
+            <ul class="link">
+                <li><a class="un-active" href="../pages/category-manager.html">Danh mục</a></li>
+                <li><a href="../pages/test-manager.html">Bài test</a></li>
+                <li><a href="../pages/login.html">Đăng xuất</a></li>
+            </ul>
+        </header>
+    
+        <div class="container">
+            <h1>Tạo bài test</h1>
+            <div class="test-name-box">
+                <label for="name-test">Tên bài test</label>
+                <br>
+                <input type="text" name="name-test" placeholder="Điền tên bài test">
+            </div>
+            <div class="function-container">
+                <div class="select">
+                    <label for="select">Danh mục</label>
+                    <br>
+                    <select name="select" id="arrange" class="arrange">
+                        <option value="">Chọn danh mục</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="time-box">
+                    <label for="time">Thời gian(phút)</label>
+                    <br>
+                    <input type="text" name="time" class="time">
+                </div>
+            </div>
+            <h1>Quản lý câu hỏi</h1>
+            <div class="main-container">
+            <button class="btn-add">Thêm câu hỏi</button>
+            <button class="btn-save">Lưu</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên bài test</th>
+                        <th>Số câu hỏi</th>
+                        <th>Thời gian</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>📚 Lịch sử</td>
+                        <td>15</td>
+                        <td>10 min</td>
+                        <td><button class="btn-edit">Sửa</button> <button class="btn-delete">Xoá</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>🧠 Khoa học</td>
+                        <td>20</td>
+                        <td>15 min</td>
+                        <td><button class="btn-edit">Sửa</button> <button class="btn-delete">Xoá</button></td>
+                    </tr>
+                </tbody>
+            </table>        
+        </div>
+        <footer>
+            <p>&copy; 2025 QuizzForge. All rights reserved.</p>
+        </footer>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Thêm/sửa danh mục</h2>
+                <span class="close">X</span>
+            </div>
+            <div class="modal-body">
+                <label for="category-name">Câu hỏi</label>
+                <input type="text" id="category-name" class="question" placeholder="Nhập câu hỏi">
+                <label for="selec-modal">Câu trả lời</label>
+                <div class="option">
+                    <input type="checkbox" class="checkbox" name="selec-modal">
+                    <input type="text" class="option-content" placeholder="nhập câu trả lời">
+                    <img src="../assets/images/Trash_Full.png" alt="" class="trash">
+                </div>
+                <div class="option">
+                    <input type="checkbox" class="checkbox" name="selec-modal">
+                    <input type="text" class="option-content" placeholder="nhập câu trả lời">
+                    <img src="../assets/images/Trash_Full.png" alt="" class="trash">
+                </div>
+                <div class="option">
+                    <input type="checkbox" class="checkbox" name="selec-modal">
+                    <input type="text" class="option-content" placeholder="nhập câu trả lời">
+                    <img src="../assets/images/Trash_Full.png" alt="" class="trash">
+                </div>
+                <div class="option">
+                    <input type="checkbox" class="checkbox" name="selec-modal">
+                    <input type="text" class="option-content" placeholder="nhập câu trả lời">
+                    <img src="../assets/images/Trash_Full.png" alt="" class="trash">
+                </div>
+                <button class="add-modal">Thêm câu trả lời</button>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-modal">Hủy</button>
+                <button class="save-modal">Lưu</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

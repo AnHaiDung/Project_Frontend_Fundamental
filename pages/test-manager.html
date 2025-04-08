@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/images/Gemini_Generated_Image_nmxnq9nmxnq9nmxn.jpg" type="image/x-icon">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/test-manager.css">
+</head>
+<body>
+    <div class="body">
+        <header class="navbar">
+            <h1 class="h1">QuizzForge</h1>
+            <ul class="link">
+                <li><a class="un-active" href="../pages/category-manager.html">Danh mục</a></li>
+                <li><a href="../pages/test-manager.html">Bài test</a></li>
+                <li><a href="../pages/login.html">Đăng xuất</a></li>
+            </ul>
+        </header>
+    
+        <div class="container">
+            <h1>Quản lý bài test</h1>
+            <div class="main-container">
+            <button class="btn-add">Thêm bài test</button>
+            <div class="function-container">
+                <select name="" id="arrange" class="arrange">
+                    <option value="">Sắp xếp theo</option>
+                    <option value="">Lớn dần</option>
+                    <option value="">Nhỏ dần</option>
+                </select>
+                <input type="text" class="find-test" placeholder="Tìm kiếm theo tên">
+            </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên bài test</th>
+                        <th>Số câu hỏi</th>
+                        <th>Thời gian</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>📚 Lịch sử</td>
+                        <td>15</td>
+                        <td>10 min</td>
+                        <td><button class="btn-edit">Sửa</button> <button class="btn-delete">Xoá</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>🧠 Khoa học</td>
+                        <td>20</td>
+                        <td>15 min</td>
+                        <td><button class="btn-edit">Sửa</button> <button class="btn-delete">Xoá</button></td>
+                    </tr>
+                </tbody>
+            </table>        
+            <div class="change-page">
+                <button>&lt;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>&gt;</button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2025 Quizz App. All rights reserved.</p>
+        </footer>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>xác nhận xóa</h2>
+                <span class="close">X</span>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn muốn xóa bài test này</p>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-modal">Hủy</button>
+                <button class="delete-modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
