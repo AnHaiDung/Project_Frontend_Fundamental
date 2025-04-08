@@ -7,6 +7,11 @@ const loginPasswordError = document.querySelector("#login-password-error");
 
 const users = JSON.parse(localStorage.getItem("users")) || [];
 
+const admin = {
+    email: "admin@gmail.com",
+    password: "admin123"
+};
+
 loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -29,15 +34,24 @@ loginForm.addEventListener("submit", function (e) {
     }
 
     if (isValid) {
-        const foundUser = users.find(user => 
-            user.email === loginEmailInput.value && user.password === loginPasswordInput.value
-        );
-
-        if (foundUser) {
-            window.location.href = "../pages/dashboard.html";
+        if (loginEmailInput.value === admin.email &&loginPasswordInput.value === admin.password) {
+            window.location.href = "../pages/dashboard.html"; 
         } else {
-            loginPasswordError.textContent = "Email hoặc mật khẩu không đúng";
-            loginPasswordError.style.display = "block";
+            const foundUser = users.find(user =>
+                user.email === loginEmailInput.value &&
+                user.password === loginPasswordInput.value
+            );
+    
+            if (foundUser) {
+                window.location.href = "../pages/category-manager.html";
+            } else {
+                loginPasswordError.textContent = "Email hoặc mật khẩu không đúng";
+                loginPasswordError.style.display = "block";
+            }
         }
     }
+    
 });
+
+
+
