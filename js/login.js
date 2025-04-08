@@ -34,13 +34,12 @@ loginForm.addEventListener("submit", function (e) {
     }
 
     if (isValid) {
-        if (loginEmailInput.value === admin.email &&loginPasswordInput.value === admin.password) {
-            window.location.href = "../pages/dashboard.html"; 
+        if (loginEmailInput.value === admin.email && loginPasswordInput.value === admin.password) {
+            window.location.href = "../pages/dashboard.html";
         } else {
-            const foundUser = users.find(user =>
-                user.email === loginEmailInput.value &&
-                user.password === loginPasswordInput.value
-            );
+            var foundUser = users.find(function(user) {
+                return user.email === loginEmailInput.value && user.password === loginPasswordInput.value;
+            });
     
             if (foundUser) {
                 window.location.href = "../pages/category-manager.html";
@@ -50,7 +49,7 @@ loginForm.addEventListener("submit", function (e) {
             }
         }
     }
-    
+
 });
 
 
