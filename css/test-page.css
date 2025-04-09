@@ -28,9 +28,15 @@
     border: none;
 }
 
-.nav-links a {
+.link {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+   
+}
+
+.link a {
     color: white;
-    margin-left: 20px;
     text-decoration: none;
 }
 

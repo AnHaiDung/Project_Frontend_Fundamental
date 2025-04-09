@@ -7,8 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/category-manager.css" />
   </head>
-  <body>
-    
+  <body> 
     <div class="body">
       <header class="navbar">
         <h1 class="h1">QuizzForge</h1>
@@ -35,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>1</td>
               <td>Lịch sử</td>
               <td>
@@ -50,7 +49,7 @@
                 <button class="btn-edit">Sửa</button>
                 <button class="btn-delete">Xoá</button>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
         <div class="change-page">
@@ -65,7 +64,7 @@
         <p>&copy; 2025 QuizzForge. All rights reserved.</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal-add">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Thêm/sửa danh mục</h2>
@@ -83,5 +82,21 @@
             </div>
         </div>
     </div>
+    <div class="modal-delete">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>xác nhận xóa</h2>
+              <span class="close">X</span>
+          </div>
+          <div class="modal-body">
+              <p>Bạn chắc chắn muốn xóa bài test này</p>
+          </div>
+          <div class="modal-footer">
+              <button class="cancel-modal">Hủy</button>
+              <button class="delete-modal">Xóa</button>
+          </div>
+      </div>
+  </div>
+  <script src="../js/category.js"></script>
   </body>
 </html>
