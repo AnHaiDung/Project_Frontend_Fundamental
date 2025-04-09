@@ -7,6 +7,8 @@ const loginPasswordError = document.querySelector("#login-password-error");
 
 const users = JSON.parse(localStorage.getItem("users")) || [];
 
+let usersLogin = 0;
+
 const admin = {
     email: "admin@gmail.com",
     password: "admin123"

@@ -201,3 +201,10 @@ footer {
   background: #dc3545;
   color: white;
 }
+
+.error-message {
+  color: red;
+  display: none;
+  font-size: 14px;
+  text-align: left;
+}

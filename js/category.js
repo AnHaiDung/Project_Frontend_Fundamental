@@ -17,6 +17,7 @@ const categoryInput = document.querySelector("#category-name");
 const emojiInput = document.querySelector("#emoji");
 const tbody = document.querySelector("tbody");
 const pagination = document.querySelector(".change-page");
+const errorMess = document.querySelector("#error-message");
 
 let categories = JSON.parse(localStorage.getItem("categories")) || [];
 
@@ -43,6 +44,8 @@ function openAddModal(index = null) {
     categoryInput.value = "";
     emojiInput.value = "";
   }
+  errorMess.style.display = "none";
+  errorMess.innerHTML = "";
   modalAdd.style.display = "flex";
 }
 
@@ -131,24 +134,29 @@ saveModalBtn.onclick = () => {
   const emoji = emojiInput.value.trim();
 
   if (!name || !emoji) {
-    alert("Vui lòng điền đầy đủ thông tin.");
+    errorMess.style.display = "block";
+    errorMess.innerHTML = "Không được để trống";
     return;
   }
+
   const nameLower = name.toLowerCase();
   const isDuplicate = categories.some((cat, index) => {
     return index !== Number(currentEditIndex) && cat.name.toLowerCase() === nameLower;
   });
 
   if (isDuplicate) {
-    alert("Tên danh mục đã tồn tại!");
+    errorMess.style.display = "block";
+    errorMess.innerHTML = "Danh mục đã tồn tại";
     return;
   }
 
-  const newCategory = { name, emoji };
-
+  let newCategory;
   if (currentEditIndex === null) {
+    const newId = categories.length > 0 ? Math.max(...categories.map(c => c.id)) + 1 : 1;
+    newCategory = { id: newId, name, emoji };
     categories.push(newCategory);
   } else {
+    newCategory = { id: categories[currentEditIndex].id, name, emoji };
     categories[currentEditIndex] = newCategory;
   }
 
@@ -171,5 +179,12 @@ closeModalAdd.onclick = closeAddModal;
 cancelModalAdd.onclick = closeAddModal;
 closeModalDelete.onclick = closeDeleteModal;
 cancelModalDelete.onclick = closeDeleteModal;
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeAddModal();
+    closeDeleteModal();
+  }
+});
 
 renderCategories();

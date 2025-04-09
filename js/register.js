@@ -72,10 +72,14 @@ registerForm.addEventListener("submit", function (e) {
             password: passwordInput.value,    
         }
 
-        userLocal.push(user);
-
-        localStorage.setItem("users", JSON.stringify(userLocal));
-        
+        Swal.fire({
+            text: "Đăng ký thàng cổng",
+            icon: "success"
+        }).then(() => {
+            userLocal.push(user);
+        localStorage.setItem("users", JSON.stringify(userLocal));       
         window.location.href = "../pages/login.html"
+        });
+
     }
 });
