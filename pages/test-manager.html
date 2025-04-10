@@ -14,7 +14,7 @@
             <ul class="link">
                 <li><a href="../pages/category-manager.html">Danh mục</a></li>
                 <li><a class="un-active" href="../pages/test-manager.html">Bài test</a></li>
-                <li><a href="../pages/login.html">Đăng xuất</a></li>
+                <li><p class="sig-out" id="sig-out" >Đăng xuất</p></li>
             </ul>
         </header>
     
@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>1</td>
                         <td>📚 Lịch sử</td>
                         <td>15</td>
@@ -55,7 +55,7 @@
                         <td>20</td>
                         <td>15 min</td>
                         <td><button class="btn-edit">Sửa</button> <button class="btn-delete">Xoá</button></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>        
             <div class="change-page">
@@ -70,7 +70,26 @@
             <p>&copy; 2025 Quizz App. All rights reserved.</p>
         </footer>
     </div>
-    <div class="modal">
+    <div class="modal-add">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Thêm/sửa danh mục</h2>
+                <span class="close">X</span>
+            </div>
+            <div class="modal-body">
+                <label for="category-name">Tên danh mục</label>
+                <input type="text" id="category-name">
+                <label for="emoji">Emoji</label>
+                <input type="text" id="emoji">
+            </div>
+            <div id="error-message" class="error-message">Vui lòng nhập đầy đủ thông tin</div>            
+            <div class="modal-footer">
+                <button class="cancel-modal">Hủy</button>
+                <button class="save-modal">Lưu</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-delete">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>xác nhận xóa</h2>
@@ -85,6 +104,7 @@
             </div>
         </div>
     </div>
+    <script src="../js/test-manager.js"></script>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-const defaultCategories = [
+let categories = JSON.parse(localStorage.getItem("categories")) || [
   { id: 1, name: "Lịch sử", emoji: "📜" },
   { id: 2, name: "Khoa học", emoji: "🔬" },
 ];
@@ -16,20 +16,27 @@ const deleteModalBtn = modalDelete.querySelector(".delete-modal");
 const categoryInput = document.querySelector("#category-name");
 const emojiInput = document.querySelector("#emoji");
 const tbody = document.querySelector("tbody");
-const pagination = document.querySelector(".change-page");
+const pagination = document.querySelector("#btnPages");
 const errorMess = document.querySelector("#error-message");
+const logoutButton = document.querySelector("#sig-out");
 
-let categories = JSON.parse(localStorage.getItem("categories")) || [];
+logoutButton.addEventListener('click', function(e) {
+  e.preventDefault();
 
-if (categories.length === 0) {
-  categories = defaultCategories;
-  saveCategories();
-}
+  localStorage.removeItem('loggedInUser');
+
+  window.location.href = "../pages/login.html"
+});
+
+// if (!localStorage.getItem("loggedInUser") || {}){
+//   localStorage.removeItem('loggedInUser');
+//   window.location.href = "../pages/login.html"
+// }
 
 let currentEditIndex = null;
 let currentDeleteIndex = null;
 let currentPage = 1;
-let perPage = 3;
+const totalPerPage = 7;
 
 function saveCategories() {
   localStorage.setItem("categories", JSON.stringify(categories));
@@ -63,30 +70,35 @@ function closeDeleteModal() {
 }
 
 function renderCategories() {
-  tbody.innerHTML = "";
+  tbody.innerHTML = "";  
 
-  const start = (currentPage - 1) * perPage;
-  const end = start + perPage;
+  const start = (currentPage - 1) * totalPerPage;
+  const end = start + totalPerPage;
   const currentCategories = categories.slice(start, end);
 
+  let rows = "";
   currentCategories.forEach((cat, i) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${start + i + 1}</td>
-      <td>${cat.emoji} ${cat.name}</td>
-      <td>
-        <button class="btn-edit" data-index="${start + i}">Sửa</button>
-        <button class="btn-delete" data-index="${start + i}">Xoá</button>
-      </td>
+    rows += `
+      <tr>
+        <td>${start + i + 1}</td>
+        <td>${cat.emoji} ${cat.name}</td>
+        <td>
+          <button class="btn-edit" data-index="${start + i}">Sửa</button>
+          <button class="btn-delete" data-index="${start + i}">Xoá</button>
+        </td>
+      </tr>
     `;
-    tbody.appendChild(row);
   });
 
-  document.querySelectorAll(".btn-edit").forEach((btn) => {
+  tbody.innerHTML = rows;  
+
+  const editButtons = document.querySelectorAll(".btn-edit");
+  editButtons.forEach((btn) => {
     btn.onclick = () => openAddModal(Number(btn.dataset.index));
   });
 
-  document.querySelectorAll(".btn-delete").forEach((btn) => {
+  const deleteButtons = document.querySelectorAll(".btn-delete");
+  deleteButtons.forEach((btn) => {
     btn.onclick = () => openDeleteModal(Number(btn.dataset.index));
   });
 
@@ -94,39 +106,52 @@ function renderCategories() {
 }
 
 function renderPagination() {
-  const totalPages = Math.ceil(categories.length / perPage);
+  const totalPages = Math.ceil(categories.length / totalPerPage);
   pagination.innerHTML = "";
 
-  const prevBtn = document.createElement("button");
-  prevBtn.textContent = "<";
-  prevBtn.disabled = currentPage === 1;
-  prevBtn.onclick = () => {
-    currentPage--;
-    renderCategories();
-  };
-  pagination.appendChild(prevBtn);
+  let paginationButtons = "";
+
+  let prevBtn = "<button id='btnPrev'> < </button>";
+  if (currentPage === 1) {
+    prevBtn = "<button id='btnPrev' disabled> < </button>";
+  }
+  paginationButtons += prevBtn;
 
   for (let i = 1; i <= totalPages; i++) {
-    const pageBtn = document.createElement("button");
-    pageBtn.textContent = i;
-    if (i === currentPage) {
-      pageBtn.classList.add("active");
-    }
-    pageBtn.onclick = () => {
-      currentPage = i;
-      renderCategories();
-    };
-    pagination.appendChild(pageBtn);
+    paginationButtons += `
+      <button class="page-btn" ${i === currentPage ? 'class="btn-active"' : ''} data-page="${i}">${i}</button>
+    `;
   }
 
-  const nextBtn = document.createElement("button");
-  nextBtn.textContent = ">";
-  nextBtn.disabled = currentPage === totalPages;
-  nextBtn.onclick = () => {
-    currentPage++;
-    renderCategories();
-  };
-  pagination.appendChild(nextBtn);
+  let nextBtn = "<button id='btnNext'> > </button>";
+  if (currentPage === totalPages) {
+    nextBtn = "<button id='btnNext' disabled> > </button>";
+  }
+  paginationButtons += nextBtn;
+
+  pagination.innerHTML = paginationButtons;
+
+  const pageBtns = document.querySelectorAll(".page-btn");
+  pageBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      currentPage = parseInt(btn.dataset.page);
+      renderCategories();
+    });
+  });
+
+  document.querySelector("#btnPrev").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderCategories();
+    }
+  });
+
+  document.querySelector("#btnNext").addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderCategories();
+    }
+  });
 }
 
 saveModalBtn.onclick = () => {
@@ -140,9 +165,14 @@ saveModalBtn.onclick = () => {
   }
 
   const nameLower = name.toLowerCase();
-  const isDuplicate = categories.some((cat, index) => {
-    return index !== Number(currentEditIndex) && cat.name.toLowerCase() === nameLower;
-  });
+  let isDuplicate = false;
+
+  for (let i = 0; i < categories.length; i++) {
+    if (i !== currentEditIndex && categories[i].name.toLowerCase() === nameLower) {
+      isDuplicate = true;
+      break;
+    }
+  }
 
   if (isDuplicate) {
     errorMess.style.display = "block";
@@ -152,7 +182,10 @@ saveModalBtn.onclick = () => {
 
   let newCategory;
   if (currentEditIndex === null) {
-    const newId = categories.length > 0 ? Math.max(...categories.map(c => c.id)) + 1 : 1;
+    let newId = 1;
+    if (categories.length > 0) {
+      newId = Math.max(...categories.map(c => c.id)) + 1;
+    }
     newCategory = { id: newId, name, emoji };
     categories.push(newCategory);
   } else {
