@@ -1,4 +1,3 @@
-// Phiên bản đơn giản với chức năng thêm/sửa/xóa câu hỏi không dùng alert hay Swal
 
 const categorySelect = document.querySelector("#arrange");
 const nameInput = document.querySelector("#test-name");
